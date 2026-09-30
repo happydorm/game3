@@ -1,0 +1,65 @@
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:"Noto Sans KR","Malgun Gothic",system-ui,sans-serif;background:#eaf5ff;color:#17345e}
+body{display:flex;justify-content:center;align-items:center}
+.game-shell{width:min(100vw,1100px);padding:16px}
+.game{position:relative;width:100%;height:min(78vh,650px);min-height:520px;overflow:hidden;border:5px solid #17345e;border-radius:24px;background:#9bdcff;box-shadow:0 10px 0 #17345e,0 24px 50px rgba(23,52,94,.16);touch-action:none}
+.world{position:absolute;left:0;top:0;width:2700px;height:100%;will-change:transform}
+.sky{position:absolute;inset:0;background:#9bdcff url('campus-bg.png') center top / 2700px 100% no-repeat}
+.sun{display:none}
+.cloud{display:none}
+.cloud:before,.cloud:after{content:"";position:absolute;background:#fff;border:4px solid rgba(23,52,94,.10);border-radius:50%}
+.cloud:before{width:50px;height:50px;left:17px;top:-30px}.cloud:after{width:60px;height:60px;right:14px;top:-38px}
+.cloud-a{left:220px;top:135px}.cloud-b{left:1120px;top:90px;transform:scale(.75)}
+.far-building{display:none}
+.building-a{display:none}.building-b{display:none}
+.ground{position:absolute;left:0;bottom:0;width:2700px;height:125px;background:repeating-linear-gradient(90deg,#d9d9d9 0 74px,#c9c9c9 74px 77px),repeating-linear-gradient(0deg,rgba(255,255,255,.28) 0 38px,rgba(150,150,150,.18) 38px 41px);border-top:5px solid #7d8da1;}
+.grass{display:none}
+.sign{display:none}
+.hud{position:absolute;z-index:30;left:18px;right:18px;top:16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.title-badge,.count-badge{padding:10px 15px;background:#fff;border:4px solid #17345e;border-radius:15px;box-shadow:0 4px 0 rgba(23,52,94,.22);font-weight:900}
+.title-badge{font-size:20px}.count-badge{font-size:15px}
+.hint{position:absolute;z-index:30;top:78px;left:50%;transform:translateX(-50%);padding:6px 12px;background:rgba(255,255,255,.9);border:3px solid #17345e;border-radius:999px;font-size:12px;font-weight:900;white-space:nowrap}
+.player{position:absolute;z-index:15;left:90px;bottom:116px;width:105px;height:130px;display:flex;align-items:flex-end;justify-content:center}
+.player img{max-width:105px;max-height:130px;object-fit:contain;image-rendering:auto}
+.roommate{position:absolute;z-index:12;bottom:116px;width:140px;text-align:center;transform:translateX(-50%)}
+.roommate img{width:100px;height:125px;object-fit:contain;image-rendering:auto}
+.type-label{display:inline-block;margin-bottom:5px;padding:5px 9px;border:3px solid #17345e;border-radius:999px;background:#fff;font-size:12px;font-weight:900;white-space:nowrap}
+.roommate.met .type-label{background:#ffe36c}
+.roommate.met img{animation:hello .55s ease}
+@keyframes hello{50%{transform:translateY(-10px)}}
+.mobile-controls{display:none;position:absolute;z-index:40;left:0;right:0;bottom:14px;justify-content:space-between;padding:0 16px;pointer-events:none}
+.mobile-controls button{pointer-events:auto;width:62px;height:52px;border:4px solid #17345e;border-radius:15px;background:#fff;color:#17345e;font-size:22px;font-weight:900;box-shadow:0 5px 0 #17345e}
+.overlay{position:fixed;z-index:100;inset:0;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(17,42,76,.58)}
+.hidden{display:none!important}
+.modal-card{width:min(92vw,480px);padding:26px 24px;background:#fffaf0;border:5px solid #17345e;border-radius:24px;box-shadow:0 9px 0 #17345e;text-align:center;animation:pop .2s ease}
+@keyframes pop{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+.sparkle,.big-star{font-size:42px;color:#ffd34d;text-shadow:3px 3px 0 #17345e}
+.eyebrow{margin:0 0 8px;font-size:12px;font-weight:1000;letter-spacing:1.2px}
+.modal-card h2{margin:4px 0 14px;font-size:30px;line-height:1.25}
+.modal-text{margin:0 0 20px;font-size:17px;line-height:1.55;font-weight:800}
+.primary-btn,.secondary-btn{border:4px solid #17345e;border-radius:14px;padding:12px 24px;font-size:16px;font-weight:900;cursor:pointer}
+.primary-btn{background:#ffd64f;box-shadow:0 5px 0 #17345e}.secondary-btn{background:#fff}
+.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:18px 0}
+.choices button{min-height:120px;border:4px solid #17345e;border-radius:15px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;font-size:31px;font-weight:900;cursor:pointer}
+.choices span{font-size:13px;line-height:1.25}.choices button.selected{background:#ffe36c;transform:translateY(-3px)}
+.choice-result{min-height:26px;margin:8px 0 12px;font-weight:900}
+@media(max-width:700px){
+ body{display:block}.game-shell{padding:0}.game{width:100vw;height:100vh;min-height:560px;border:0;border-radius:0;box-shadow:none}
+ .title-badge{font-size:14px;padding:8px 10px}.count-badge{font-size:12px;padding:8px 10px}.hint{top:67px;font-size:10px}
+ .mobile-controls{display:flex}
+ .choices{grid-template-columns:1fr}.choices button{min-height:70px;flex-direction:row}.choices span{font-size:14px}
+ .modal-card h2{font-size:25px}
+}
+
+/* ===== 제목은 배경 이미지에 포함되어 있으므로 기존 HTML 제목 숨김 ===== */
+.title-badge{
+  display:none !important;
+}
+
+/* 새 배경 이미지 */
+.game-world{
+  background-image:url("game_background.png") !important;
+  background-size:cover !important;
+  background-position:center top !important;
+  background-repeat:no-repeat !important;
+}
