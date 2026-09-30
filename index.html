@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>꿈별이의 룸메이트 찾기</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <section class="game" id="game">
+      <div class="hud">
+        <div class="title-badge">꿈별이의 룸메이트 찾기</div>
+        <div class="count-badge" id="count">0 / 3</div>
+      </div>
+
+      <div class="hint">← → 이동 · SPACE 점프</div>
+
+      <div class="world" id="world">
+        <div class="sky">
+          <div class="sun"></div>
+          <div class="cloud cloud-a"></div>
+          <div class="cloud cloud-b"></div>
+          <div class="far-building building-a"></div>
+          <div class="far-building building-b"></div>
+        </div>
+
+        <div class="ground">
+          <div class="grass"></div>
+        </div>
+
+        <div class="sign">행복기숙사</div>
+
+        <div class="roommate" id="tidy" data-x="620">
+          <div class="type-label">깔끔한 룸메이트</div>
+          <img src="tidy.png" alt="깔끔한 룸메이트">
+        </div>
+
+        <div class="roommate" id="quiet" data-x="1260">
+          <div class="type-label">조용한 룸메이트</div>
+          <img src="quiet.png" alt="조용한 룸메이트">
+        </div>
+
+        <div class="roommate" id="active" data-x="1900">
+          <div class="type-label">활발한 룸메이트</div>
+          <img src="active.png" alt="활발한 룸메이트">
+        </div>
+
+        <div class="player" id="player">
+          <img src="player.png" alt="꿈별이">
+        </div>
+      </div>
+
+      <div class="mobile-controls">
+        <button id="leftBtn">◀</button>
+        <button id="jumpBtn">●</button>
+        <button id="rightBtn">▶</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="overlay hidden" id="roommateModal">
+    <div class="modal-card">
+      <div class="sparkle">✦</div>
+      <p class="eyebrow">NEW ROOMMATE!</p>
+      <h2 id="modalTitle"></h2>
+      <p id="modalText" class="modal-text"></p>
+      <button id="continueBtn" class="primary-btn">계속하기</button>
+    </div>
+  </div>
+
+  <div class="overlay hidden" id="finishModal">
+    <div class="modal-card final-card">
+      <div class="big-star">★</div>
+      <p class="eyebrow">ROOMMATE COMPLETE!</p>
+      <h2>세 명의 룸메이트를<br>모두 만났어요!</h2>
+      <p class="modal-text">함께 하고 싶은 룸메이트는 누구인가요?</p>
+
+      <div class="choices">
+        <button data-choice="깔끔한 룸메이트">🧹<span>깔끔한<br>룸메이트</span></button>
+        <button data-choice="조용한 룸메이트">🎧<span>조용한<br>룸메이트</span></button>
+        <button data-choice="활발한 룸메이트">🎉<span>활발한<br>룸메이트</span></button>
+      </div>
+
+      <p id="choiceResult" class="choice-result"></p>
+      <button id="restartBtn" class="secondary-btn">다시 하기</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
